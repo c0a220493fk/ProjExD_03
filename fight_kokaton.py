@@ -148,7 +148,8 @@ class Beam:
         if not yoko:
             self.vx  = None
             __class__.beams.append(self.vx)
-            __class__.beams.remove("None")
+            del __class__.beams[-1]
+
         if yoko:
             self.rct.move_ip(self.vx, self.vy)
             screen.blit(self.img, self.rct)
