@@ -130,6 +130,8 @@ class Bomb:
 
 
 class Beam:
+    beams =[]
+
     def __init__(self, bird: Bird):
         self.img = pg.image.load(f"{MAIN_DIR}/fig/beam.png")
         self.rct = self.img.get_rect()
@@ -142,8 +144,14 @@ class Beam:
         ビームを速度ベクトルself.vx, self.vyに基づき移動させる
         引数 screen：画面Surface
         """
-        self.rct.move_ip(self.vx, self.vy)
-        screen.blit(self.img, self.rct)
+        yoko, tate = check_bound(self.rct)
+        if not yoko:
+            self.vx  = None
+            __class__.beams.append(self.vx)
+            __class__.beams.remove("None")
+        if yoko:
+            self.rct.move_ip(self.vx, self.vy)
+            screen.blit(self.img, self.rct)
 
 
 def main():
@@ -186,6 +194,7 @@ def main():
             bomb.update(screen)
         if beam is not None:
             beam.update(screen)
+
         pg.display.update()
         tmr += 1
         clock.tick(50)
