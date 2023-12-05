@@ -144,7 +144,7 @@ class Beam:
         ビームを速度ベクトルself.vx, self.vyに基づき移動させる
         引数 screen：画面Surface
         """
-        yoko, tate = check_bound(self.rct)
+        yoko, tate = check_bound(self.rct)  # このあたりをいじっていた
         if not yoko:
             self.vx  = None
             __class__.beams.append(self.vx)
